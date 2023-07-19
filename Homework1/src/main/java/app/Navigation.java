@@ -12,15 +12,8 @@ import java.util.Map;
 @Controller
 @Log4j2
 public class Navigation {
-    @GetMapping("navigation")
-    public String moneyPut() {
-        return "navigation";
-    }
 
-    @PostMapping("navigation")
-
-    public String navigation(InputForm form, HttpServletRequest rq) {
-        Map<String, String[]> allParams = rq.getParameterMap();
+    public static String navigationNumber(InputForm form){
         if(form.getCheckPage() == 0) return "redirect:personalInformation";
         if(form.getCheckPage() == 1) return "redirect:customCreate";
         if(form.getCheckPage() == 2) return "redirect:createNewAccount";
@@ -30,7 +23,21 @@ public class Navigation {
         if(form.getCheckPage() == 6) return "redirect:transferMoney";
         if(form.getCheckPage() == 7) return "redirect:removeCustomer";
         if(form.getCheckPage() == 8) return "redirect:removeAccount";
-        if(form.getCheckPage() == 9) return "redirect:balance";
+        if(form.getCheckPage() == 9) return "redirect:remakeCustomer";
+        if(form.getCheckPage() == 10) return "redirect:balance";
+
         return "redirect:navigation";
+
+    }
+    @GetMapping("navigation")
+    public String moneyPut() {
+        return "navigation";
+    }
+
+    @PostMapping("navigation")
+
+    public String navigation(InputForm form, HttpServletRequest rq) {
+        Map<String, String[]> allParams = rq.getParameterMap();
+        return navigationNumber(form);
     }
 }

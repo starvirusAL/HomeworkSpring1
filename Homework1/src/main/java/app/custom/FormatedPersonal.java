@@ -5,7 +5,8 @@ import app.Account;
 import java.util.List;
 
 public class FormatedPersonal {
-     public static String formated(int id, String name,  String email, String age,List<Account> accounts){
+     public static String formated(int id, String name,  String email, int age,List<Account> accounts){
+
 
 
          return String.format("""

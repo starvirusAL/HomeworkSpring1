@@ -19,7 +19,7 @@ public class Customer implements Identifable {
     private String name;
     private String email;
 
-    private String age;
+    private int age;
     private List<Account> accounts = daoAccList.findAll();
 
     public void addAccounts(Account account) {
@@ -35,7 +35,7 @@ public class Customer implements Identifable {
 
     }
 
-    Customer(Integer id, String name, String email, String age) {
+    Customer(Integer id, String name, String email, int age) {
         this.id = id;
         this.name = name;
         this.email = email;

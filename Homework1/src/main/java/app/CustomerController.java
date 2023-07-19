@@ -18,13 +18,15 @@ public class CustomerController {
         return daoListC.findAll();
     }
 
-    public void createNewCustomer( String name, String email, String age) {
+    public void createNewCustomer( String name, String email, int age) {
         daoListC.save(new Customer(daoListC.daoSize(), name, email, age));
     }
 //доработать
-    public Customer refactorCustomer(Customer customer) {
-
-        return new Customer();
+    public void  refactorCustomer(Customer customer, String name, String email, int age)
+    {
+        customer.setEmail(email);
+        customer.setAge(age);
+        customer.setName(name);
     }
 
     public void deleteCustomer(int id) {

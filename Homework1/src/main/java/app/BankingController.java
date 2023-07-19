@@ -29,7 +29,7 @@ public class BankingController {
 
     public String customCreate(InputForm form, HttpServletRequest rq) {
         Map<String, String[]> allParams = rq.getParameterMap();
-        cc.createNewCustomer(form.getName(), form.getEmail(), form.getAge());
+        cc.createNewCustomer(form.getName(), form.getEmail(), Integer.parseInt(form.getAge()));
         return "redirect:navigation";
     }
     @GetMapping("listCreate")
@@ -92,6 +92,18 @@ public class BankingController {
     public String withdrawMoney(InputForm form, HttpServletRequest rq) {
         Map<String, String[]> allParams = rq.getParameterMap();
         ac.withdrawBalance(cc.daoListC.getOne(form.getIdCustomer()).getAccountList(form.getIdAccount()), form.getValueM());
+        return "redirect:navigation";
+    }
+    @GetMapping("remakeCustomer")
+    public String remakeCustomer() {
+        return "remakeCustomer";
+    }
+
+    @PostMapping("remakeCustomer")
+    public String remakeCustomer(InputForm form, HttpServletRequest rq) {
+        Map<String, String[]> allParams = rq.getParameterMap();
+         Customer customer =  cc.daoListC.getOne(form.idCustomer) ;
+         cc.refactorCustomer(customer, form.getName(),form.getEmail(),Integer.parseInt(form.getAge()));
         return "redirect:navigation";
     }
 
