@@ -21,6 +21,7 @@ public class Navigation {
 
     public String navigation(InputForm form, HttpServletRequest rq) {
         Map<String, String[]> allParams = rq.getParameterMap();
+        if(form.getCheckPage() == 0) return "redirect:personalInformation";
         if(form.getCheckPage() == 1) return "redirect:customCreate";
         if(form.getCheckPage() == 2) return "redirect:createNewAccount";
         if(form.getCheckPage() == 3) return "redirect:list";

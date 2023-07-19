@@ -1,5 +1,6 @@
 package app;
 
+import app.custom.FormatedPersonal;
 import app.custom.TableHeader;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Controller;
@@ -49,15 +50,26 @@ public class BankingController {
         return "redirect:navigation";
     }
     @GetMapping("createNewAccount")
-    public String personal() {
+    public String createNewAccount() {
         return "createNewAccount";
     }
 
     @PostMapping("createNewAccount")
-    public String personal(InputForm form, HttpServletRequest rq) {
+    public String createNewAccount(InputForm form, HttpServletRequest rq) {
         Map<String, String[]> allParams = rq.getParameterMap();
-        cc.daoListC.getOne(form.getIdCustomer()).addAccounts(new Account(Currency.CHF));
+        cc.daoListC.getOne(form.getIdCustomer()).addAccounts(new Account(form.getInputCurrency()));
         return "redirect:navigation";
+    }
+    @GetMapping("personalInformation")
+    public String personal1() {
+        return "personalInformation";
+    }
+
+    @PostMapping("personalInformation")
+    public String personal1(InputForm form, HttpServletRequest rq) {
+        Map<String, String[]> allParams = rq.getParameterMap();
+      Customer customer =  cc.daoListC.getOne(form.getIdCustomer());
+        return FormatedPersonal.formated(customer.getId(), customer.getName(),customer.getEmail(),customer.getAge(),customer.getAccounts());
     }
     @GetMapping("withdrawMoney")
     public String withdrawMoney() {
