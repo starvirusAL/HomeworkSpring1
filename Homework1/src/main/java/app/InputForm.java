@@ -12,6 +12,8 @@ public class InputForm {
 
   int idCustomer;
   int idAccount;
+  int idCustomer2;
+  int idAccount2;
 Currency inputCurrency;
   int checkPage;
 

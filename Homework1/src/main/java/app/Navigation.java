@@ -27,7 +27,8 @@ public class Navigation {
         if(form.getCheckPage() == 3) return "redirect:list";
         if(form.getCheckPage() == 4) return "redirect:putMoney";
         if(form.getCheckPage() == 5) return "redirect:withdrawMoney";
-        if(form.getCheckPage() == 6) return "redirect:balance";
+        if(form.getCheckPage() == 6) return "redirect:transferMoney";
+        if(form.getCheckPage() == 7) return "redirect:balance";
         return "redirect:navigation";
     }
 }

@@ -17,7 +17,7 @@ public class AccountController {
     }
 
     public boolean transferMoney(Account account1, Account account2, double valueM) {
-        if (account1.getBalance() > account2.getBalance()) {
+        if (account1.getBalance() >= account2.getBalance()) {
             account2.setBalance(account2.getBalance() + valueM);
             account1.setBalance(account1.getBalance() - valueM);
             return true;

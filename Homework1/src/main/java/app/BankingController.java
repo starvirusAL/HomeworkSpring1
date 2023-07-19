@@ -40,13 +40,24 @@ public class BankingController {
 
     @GetMapping("putMoney")
     public String moneyPut() {
-        return "money";
+        return "putMoney";
     }
 
     @PostMapping("putMoney")
     public String moneyPut(InputForm form, HttpServletRequest rq) {
         Map<String, String[]> allParams = rq.getParameterMap();
         ac.replenishTheBalance(cc.daoListC.getOne(form.getIdCustomer()).getAccountList(form.getIdAccount()), form.getValueM());
+        return "redirect:navigation";
+    }
+    @GetMapping("transferMoney")
+    public String transferMoney() {
+        return "transferMoney";
+    }
+
+    @PostMapping("transferMoney")
+    public String transferMoney(InputForm form, HttpServletRequest rq) {
+        Map<String, String[]> allParams = rq.getParameterMap();
+        ac.transferMoney(cc.daoListC.getOne(form.getIdCustomer()).getAccountList(form.getIdAccount()),cc.daoListC.getOne(form.getIdCustomer2()).getAccountList(form.getIdAccount2()), form.getValueM());
         return "redirect:navigation";
     }
     @GetMapping("createNewAccount")
@@ -66,6 +77,7 @@ public class BankingController {
     }
 
     @PostMapping("personalInformation")
+    @ResponseBody
     public String personal1(InputForm form, HttpServletRequest rq) {
         Map<String, String[]> allParams = rq.getParameterMap();
       Customer customer =  cc.daoListC.getOne(form.getIdCustomer());
