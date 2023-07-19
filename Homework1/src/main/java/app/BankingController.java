@@ -106,7 +106,7 @@ public class BankingController {
     @GetMapping("list")
     public String javaBooks1(Model model) {
         data().forEach((k, v) -> model.addAttribute(k, v));
-        return "java-books";
+        return "listCustomer";
     }
     @GetMapping("balance")
     public String balance() {
@@ -120,6 +120,29 @@ public class BankingController {
 
         return "Money on your balance:" + cc.daoListC.getOne(form.idCustomer).getAccountList(form.idAccount).getBalance().toString();
     }
+    @GetMapping("removeCustomer")
+    public String removeCustomer() {
+        return "removeCustomer";
+    }
 
+    @PostMapping("removeCustomer")
 
+    public String removeCustomer(InputForm form, HttpServletRequest rq) {
+        Map<String, String[]> allParams = rq.getParameterMap();
+      cc.deleteCustomer(form.getIdCustomer())  ;
+         return "redirect:navigation";
+    }
+    @GetMapping("removeAccount")
+    public String removeAccount() {
+        return "removeAccount";
+    }
+
+    @PostMapping("removeAccount")
+
+    public String removeAccount(InputForm form, HttpServletRequest rq) {
+        Map<String, String[]> allParams = rq.getParameterMap();
+        Customer customer = cc.daoListC.getOne(form.getIdCustomer());
+        cc.deleteAccount(customer, form.getIdAccount());
+        return "redirect:navigation";
+    }
 }

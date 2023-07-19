@@ -37,7 +37,7 @@ public class CustomerController {
     }
 
     public void deleteAccount(Customer customer, int id) {
-        customer.getAccounts().remove(id);
+        customer.daoAccList.deleteById(id);
     }
 
 
