@@ -8,7 +8,7 @@ import java.util.List;
 public class CustomerController {
 
     DAO<Customer> daoListC = new DAOLinkedList<>();
-    DAO<Account> daoListA = new DAOLinkedList<>();
+
 
     public Customer getCustomerId(int id) {
         return daoListC.getOne(id);
@@ -19,7 +19,7 @@ public class CustomerController {
     }
 
     public void createNewCustomer( String name, String email, String age) {
-        daoListC.save(new Customer(daoListC.daoSize(), name, email, age, List.of(new Account(Currency.EUR))));
+        daoListC.save(new Customer(daoListC.daoSize(), name, email, age));
     }
 //доработать
     public Customer refactorCustomer(Customer customer) {
@@ -32,8 +32,8 @@ public class CustomerController {
     }
 
     public void createAccount(Customer customer) {
-        daoListA.save(new Account(customer, Currency.CHF));
-        customer.addAccounts(daoListA.getOne(0));
+
+        customer.addAccounts(new Account(Currency.CHF));
     }
 
     public void deleteAccount(Customer customer, int id) {

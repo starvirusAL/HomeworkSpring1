@@ -56,7 +56,7 @@ public class BankingController {
     @PostMapping("createNewAccount")
     public String personal(InputForm form, HttpServletRequest rq) {
         Map<String, String[]> allParams = rq.getParameterMap();
-        cc.createAccount(cc.daoListC.getOne(form.getIdCustomer()));
+        cc.daoListC.getOne(form.getIdCustomer()).addAccounts(new Account(Currency.CHF));
         return "redirect:navigation";
     }
     @GetMapping("withdrawMoney")
